@@ -18,6 +18,7 @@ public class MiProveedorContenidoContract {
 
         public static final Uri CONTENT_URI =
                 Uri.parse( "content://net.ivanvega.actividadesenandorid.provider/usuarios");
+        
 
         public static final String _ID = "_id";
         public static final String EMAIL = "email";

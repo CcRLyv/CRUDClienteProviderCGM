@@ -2,12 +2,15 @@ package net.vyl.crudclienteprovidercgm.ui.home;
 
 import android.app.AlertDialog;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.TwoLineListItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,10 +27,12 @@ import net.vyl.crudclienteprovidercgm.provider.MiProveedorContenidoContract;
 
 public class HomeFragment extends Fragment {
 
+    private static final String TAG = "Prueba";
     private HomeViewModel homeViewModel;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     AdapdadorRecyclerCursor adapdadorRecyclerCursor;
+    Cursor cursor;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +48,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        Cursor cursor = getContext().getContentResolver().query(MiProveedorContenidoContract.Usuarios.CONTENT_URI,
-                null, null, null, null);
+        consultar();
 
         adapdadorRecyclerCursor =
                 new AdapdadorRecyclerCursor(
@@ -66,11 +70,20 @@ public class HomeFragment extends Fragment {
                         break;
                     case 1:
                         AlertDialog.Builder cuadroDialogo2 = new AlertDialog.Builder(getContext());
-                        cuadroDialogo2.setTitle("¿Estás seguro de que desea eliminar la nota?");
+                        cuadroDialogo2.setTitle("¿Estás seguro de que desea eliminar el Usuario?");
                         cuadroDialogo2.setItems(new String[]{"Aceptar", "Cancelar"}, (dialogInterface2, j) -> {
                             switch (j){
                                 case 0:
-
+                                    Uri uri = Uri.parse(MiProveedorContenidoContract.Usuarios.CONTENT_URI.toString() + "/" + ((TextView)(l.findViewById(android.R.id.text1))).getText());
+                                    Log.d(TAG, uri.toString());
+                                    int result = getContext().getContentResolver().delete(uri, null, null);
+                                    if (result == 0) {
+                                        Toast.makeText(getContext(), "No se pudo eliminar", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getContext(), "Se eliminó correctamente", Toast.LENGTH_SHORT).show();
+                                        consultar();
+                                        adapdadorRecyclerCursor.notifyDataSetChanged();
+                                    }
                                     break;
                                 case 1:
                                     break;
@@ -86,5 +99,10 @@ public class HomeFragment extends Fragment {
         });
         recyclerView.setAdapter(adapdadorRecyclerCursor);
         return root;
+    }
+
+    public void consultar(){
+        cursor = getContext().getContentResolver().query(MiProveedorContenidoContract.Usuarios.CONTENT_URI,
+                null, null, null, null);
     }
 }
