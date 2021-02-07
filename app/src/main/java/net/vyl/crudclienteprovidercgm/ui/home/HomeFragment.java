@@ -1,6 +1,7 @@
 package net.vyl.crudclienteprovidercgm.ui.home;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.vyl.crudclienteprovidercgm.Actualizar;
+import net.vyl.crudclienteprovidercgm.MainActivity;
 import net.vyl.crudclienteprovidercgm.R;
 import net.vyl.crudclienteprovidercgm.data.AdapdadorRecyclerCursor;
 import net.vyl.crudclienteprovidercgm.provider.MiProveedorContenidoContract;
@@ -66,7 +69,9 @@ public class HomeFragment extends Fragment {
                 //Toast.makeText(getActivity(), "Opción selecionada " + i, Toast.LENGTH_LONG).show();
                 switch (i){
                     case 0:
-
+                        Intent intent = new Intent(getActivity(),Actualizar.class);
+                        intent.putExtra("id",((TextView)(l.findViewById(android.R.id.text1))).getText());
+                        startActivity(intent);
                         break;
                     case 1:
                         AlertDialog.Builder cuadroDialogo2 = new AlertDialog.Builder(getContext());
