@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
 public class MiProveedorContenidoContract {
     public static final String AUTHORITY = "user_dictionary";
     public static final Uri CONTENT_URI = null;
-
+// Pruevas de github 
     public MiProveedorContenidoContract() {
         throw new RuntimeException("Stub!");
     }
