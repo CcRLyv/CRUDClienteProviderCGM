@@ -59,7 +59,9 @@ public class HomeFragment extends Fragment {
                         cursor
                 );
         adapdadorRecyclerCursor.setOnClickListener(l -> {
-
+            if (getContext() instanceof MainActivity) {
+                ((MainActivity)getContext()).detalle(Integer.parseInt(((TextView)(l.findViewById(android.R.id.text1))).getText().toString()));
+            }
         });
         adapdadorRecyclerCursor.setOnLongClickListener(l -> {
             AlertDialog.Builder cuadroDialogo = new AlertDialog.Builder(getContext());
