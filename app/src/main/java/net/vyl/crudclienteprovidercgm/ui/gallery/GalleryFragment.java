@@ -28,6 +28,7 @@ public class GalleryFragment extends Fragment {
     TextView tbCorreo;
     TextView tbContra;
     TextView tbTel;
+    Button btnCanc;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class GalleryFragment extends Fragment {
         tbCorreo  = root.findViewById(R.id.tbEmail);
         tbContra  = root.findViewById(R.id.tbPas);
         tbTel  = root.findViewById(R.id.tbTel);
+        btnCanc = root.findViewById(R.id.btnCan);
 
 
 
@@ -50,9 +52,15 @@ public class GalleryFragment extends Fragment {
             cv.put(MiProveedorContenidoContract.Usuarios.NOMBRE,tbNombre.getText().toString() );
             cv.put(MiProveedorContenidoContract.Usuarios.PASS, tbContra.getText().toString());
             cv.put(MiProveedorContenidoContract.Usuarios.EMAIL, tbCorreo.getText().toString());
-            cv.put(MiProveedorContenidoContract.Usuarios.TELEFONO, tbContra.getText().toString());
+            cv.put(MiProveedorContenidoContract.Usuarios.TELEFONO, tbTel.getText().toString());
 
             Uri resultado = cr.insert(MiProveedorContenidoContract.Usuarios.CONTENT_URI, cv);
+
+        });
+
+
+        btnCanc.setOnClickListener(a ->{
+           getActivity().onBackPressed();
 
         });
         return root;

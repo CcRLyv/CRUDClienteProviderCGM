@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tbEmail" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -88,7 +88,7 @@
         android:layout_marginTop="48dp"
         android:text="ACEPTAR"
         app:layout_constraintEnd_toEndOf="@+id/tbTel"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/btnCan"
         app:layout_constraintTop_toBottomOf="@+id/tbTel" />
 
 
