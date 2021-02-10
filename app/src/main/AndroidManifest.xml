@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.vyl.crudclienteprovidercgm">
 
+    <uses-permission android:name="net.ivanvega.actividadesenandorid.READ_PERMISSION"/>
+    <uses-permission android:name="net.ivanvega.actividadesenandorid.WRITE_PERMISSION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
